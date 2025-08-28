@@ -1,16 +1,19 @@
 // Comprehensive Dynamic Space Product Data Configuration
 const productData = {
   'inertia-nano': {
-    name: 'Inertia Nano',
-    subtitle: 'Compact CubeSat Platform',
-    description: 'Revolutionary nanosatellite platform designed for research missions, educational purposes, and commercial applications with advanced miniaturized systems for space exploration.',
-    icon: 'ri-rocket-2-line',
-    category: 'Nanosatellite Systems',
-    price: 'Starting at ₹2,50,00,000',
-    rating: 4.8,
-    availability: 'Available for immediate deployment',
-    
-    // Dynamic content sections for product details page
+    // ============= BASIC METADATA =============
+    metadata: {
+      name: 'Inertia Nano',
+      subtitle: 'Compact CubeSat Platform',
+      description: 'Revolutionary nanosatellite platform designed for research missions, educational purposes, and commercial applications with advanced miniaturized systems for space exploration.',
+      icon: 'ri-rocket-2-line',
+      category: 'Nanosatellite Systems',
+      price: '₹2,50,00,000',
+      rating: 4.9,
+      availability: 'Available for 2025 launches'
+    },
+
+    // ============= CONTENT SECTIONS FOR PRODUCT PAGE =============
     contentSections: [
       {
         title: 'Advanced Nano Technology',
@@ -54,36 +57,61 @@ const productData = {
         type: 'content-only'
       }
     ],
-    
-    heroMedia: {
-      type: 'video',
-      src: 'assets/videos/inertia-nano-deployment.mp4',
-      poster: 'assets/images/inertia-nano-hero.jpg',
-      alt: 'Inertia Nano Satellite Deployment'
+
+    // ============= TECHNICAL SPECIFICATIONS =============
+    specifications: {
+      'Physical Characteristics': {
+        'Size': '1U-6U CubeSat format (10×10×10 cm per unit)',
+        'Mass': '1-8 kg depending on configuration',
+        'Power': '10-50W solar panel generation',
+        'Battery': 'Lithium-ion with 3-year life'
+      },
+      'Performance': {
+        'Mission Life': '2-5 years in LEO',
+        'Altitude Range': '300-800 km orbits',
+        'Payload Capacity': 'Up to 3U dedicated payload space',
+        'Data Rate': 'Up to 1 Mbps downlink'
+      },
+      'Environmental': {
+        'Operating Temperature': '-40°C to +85°C',
+        'Radiation Tolerance': '100 krad total dose',
+        'Vibration': 'Launch qualified to 20G',
+        'Thermal Cycling': '-100°C to +120°C survival'
+      }
     },
     
-    gallery: [
-      {
-        type: 'image',
-        src: 'assets/images/nano-assembly.jpg',
-        alt: 'Nano Satellite Assembly',
-        caption: 'Precision engineering in compact 1U-6U CubeSat format'
-      },
-      {
+    // ============= MEDIA ASSETS =============
+    media: {
+      hero: {
         type: 'video',
-        src: 'assets/videos/nano-testing.mp4',
-        poster: 'assets/images/nano-testing-thumb.jpg',
-        alt: 'Satellite Testing Process',
-        caption: 'Rigorous testing protocols for space qualification'
+        src: 'assets/videos/inertia-nano-deployment.mp4',
+        poster: 'assets/images/inertia-nano-hero.jpg',
+        alt: 'Inertia Nano Satellite Deployment'
       },
-      {
-        type: 'image',
-        src: 'assets/images/nano-orbit.jpg',
-        alt: 'Satellite in Orbit',
-        caption: 'Inertia Nano successfully operating in Low Earth Orbit'
-      }
-    ],
-    
+      gallery: [
+        {
+          type: 'image',
+          src: 'assets/images/nano-assembly.jpg',
+          alt: 'Nano Satellite Assembly',
+          caption: 'Precision engineering in compact 1U-6U CubeSat format'
+        },
+        {
+          type: 'video',
+          src: 'assets/videos/nano-testing.mp4',
+          poster: 'assets/images/nano-testing-thumb.jpg',
+          alt: 'Satellite Testing Process',
+          caption: 'Rigorous testing protocols for space qualification'
+        },
+        {
+          type: 'image',
+          src: 'assets/images/nano-orbit.jpg',
+          alt: 'Satellite in Orbit',
+          caption: 'Inertia Nano successfully operating in Low Earth Orbit'
+        }
+      ]
+    },
+
+    // ============= FEATURES =============
     features: [
       {
         icon: 'ri-microscope-line',
@@ -122,34 +150,8 @@ const productData = {
         benefits: ['Radiation tolerance', 'Thermal cycling', 'Vibration tested']
       }
     ],
-    
-    specifications: {
-      'Physical Characteristics': {
-        'Size': '1U-6U CubeSat format (10×10×10 cm per unit)',
-        'Mass': '1-8 kg depending on configuration',
-        'Power': '10-50W solar panel generation',
-        'Battery': 'Lithium-ion with 3-year life'
-      },
-      'Performance': {
-        'Mission Life': '2-5 years in LEO',
-        'Altitude Range': '300-800 km orbits',
-        'Payload Capacity': 'Up to 3U dedicated payload space',
-        'Data Rate': 'Up to 1 Mbps downlink'
-      },
-      'Environmental': {
-        'Operating Temperature': '-40°C to +85°C',
-        'Radiation Tolerance': '100 krad total dose',
-        'Vibration': 'Launch qualified to 20G',
-        'Thermal Cycling': '-100°C to +120°C survival'
-      },
-      'Certifications': {
-        'Standards': 'CubeSat Design Standard compliance',
-        'Launch': 'Compatible with major launch providers',
-        'Testing': 'Full space qualification testing',
-        'Documentation': 'Complete technical documentation'
-      }
-    },
-    
+
+    // ============= APPLICATIONS =============
     applications: [
       {
         title: 'Earth Observation',
@@ -176,7 +178,8 @@ const productData = {
         benefits: ['Cost-effective deployment', 'Rapid development', 'Scalable constellation']
       }
     ],
-    
+
+    // ============= PRICING PACKAGES =============
     packages: [
       {
         name: 'Research Mission',

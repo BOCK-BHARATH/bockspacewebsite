@@ -380,14 +380,18 @@
             
             const product = productData[productId];
             console.log('Loading product:', product);
-            
+
+            // Handle both old and new data structure for backward compatibility
+            const metadata = product.metadata || product;
+            const contentSections = product.contentSections || [];
+
             // Update hero section
-            document.getElementById('product-title').textContent = product.name;
-            document.getElementById('product-description').textContent = product.description;
-            
+            document.getElementById('product-title').textContent = metadata.name;
+            document.getElementById('product-description').textContent = metadata.description;
+
             // Use dynamic content sections from product data
             const contentContainer = document.getElementById('product-content');
-            const sections = product.contentSections || [];
+            const sections = contentSections;
             
             sections.forEach((section, index) => {
                 const sectionDiv = document.createElement('div');
