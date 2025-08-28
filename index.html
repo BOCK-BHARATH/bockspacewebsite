@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="assets-extra/css/styletime.css">
+    <link rel="icon" type="image/x-icon" href="image/logos/Space.svg"> 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'primary': '#0A0F1C',
+              'primary-dark': '#060B15',
+              'secondary': '#1E40AF',
+              'accent': '#3B82F6',
+              'electric': '#60A5FA',
+              'navy': '#1E293B',
+              'midnight': '#0F172A',
+              'slate': '#334155',
+              'azure': '#0EA5E9'
+            },
+            fontFamily: {
+              'poppins': ['Poppins', 'sans-serif']
+            },
+            animation: {
+              'rotate360': 'rotate360 20s linear infinite',
+              'bounce-y': 'bounce-y 3s ease-in-out infinite alternate',
+              'shine': 'shine 800ms ease-out',
+              'glow': 'glow 2s ease-in-out infinite alternate',
+              'float': 'float 6s ease-in-out infinite',
+              'pulse-blue': 'pulse-blue 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+            },
+            keyframes: {
+              rotate360: {
+                '0%': { transform: 'rotate(0deg)' },
+                '100%': { transform: 'rotate(360deg)' }
+              },
+              'bounce-y': {
+                '0%': { transform: 'translateY(0)' },
+                '100%': { transform: 'translateY(-15px)' }
+              },
+              shine: {
+                '0%': { left: '-100%', opacity: '0' },
+                '50%': { opacity: '1' },
+                '100%': { left: '100%', opacity: '0' }
+              },
+              glow: {
+                '0%': { boxShadow: '0 0 20px rgba(59, 130, 246, 0.5)' },
+                '100%': { boxShadow: '0 0 30px rgba(96, 165, 250, 0.8)' }
+              },
+              float: {
+                '0%, 100%': { transform: 'translateY(0px)' },
+                '50%': { transform: 'translateY(-20px)' }
+              },
+              'pulse-blue': {
+                '0%, 100%': { opacity: '1' },
+                '50%': { opacity: '0.7' }
+              }
+            },
+            backgroundImage: {
+              'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+              'blue-cosmic': 'linear-gradient(135deg, #0F172A 0%, #1E40AF 50%, #0A0F1C 100%)'
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+      
+      body {
+        background: linear-gradient(135deg, #060B15 0%, #0F172A 25%, #1E40AF 50%, #0F172A 75%, #060B15 100%);
+        background-attachment: fixed;
+        background-size: 400% 400%;
+        animation: gradientShift 12s ease infinite;
+      }
+      
+      @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      
+      .btn-shine {
+        background: linear-gradient(45deg, #1E40AF, #3B82F6, #60A5FA);
+        border: 1px solid rgba(96, 165, 250, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .btn-shine:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(120deg, transparent, rgba(96, 165, 250, 0.6), transparent);
+        transition: all 800ms ease;
+      }
+      
+      .btn-shine:hover:before {
+        left: 100%;
+      }
+      
+      .btn-shine:hover {
+        background: linear-gradient(45deg, #3B82F6, #60A5FA, #93C5FD);
+        box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+        transform: translateY(-2px);
+      }
+      
+
+      
+      .glass-effect {
+        background: rgba(15, 23, 42, 0.8);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(59, 130, 246, 0.2);
+      }
+      
+      .glow-text {
+        text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+      }
+      
+      .timeline-glow {
+        box-shadow: 0 0 20px rgba(30, 64, 175, 0.3);
+      }
+      
+      /* Hide vertical scrollbar */
+      ::-webkit-scrollbar {
+        width: 0px;
+        background: transparent;
+      }
+      
+      /* Scroll progress bar at top */
+      .scroll-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 4px;
+        background: linear-gradient(90deg, #1E40AF, #3B82F6, #60A5FA);
+        z-index: 9999;
+        transition: width 0.1s ease;
+        box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+      }
+      
+      /* 3D Product Animation Styles */
+      .product-card {
+        perspective: 1000px;
+        transform-style: preserve-3d;
+        transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+      }
+      
+      .product-card:hover {
+        transform: rotateX(5deg) rotateY(5deg) scale(1.05);
+      }
+      
+      .product-inner {
+        transform-style: preserve-3d;
+        transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+      }
+      
+      .product-card:hover .product-inner {
+        transform: translateZ(30px);
+      }
+      
+      .product-icon {
+        transform: translateZ(50px);
+        transition: all 0.4s ease;
+      }
+      
+      .product-card:hover .product-icon {
+        transform: translateZ(80px) rotateY(10deg);
+      }
+      
+      .product-content {
+        transform: translateZ(20px);
+      }
+      
+      @keyframes float3d {
+        0%, 100% { 
+          transform: translateZ(0px) rotateX(0deg);
+        }
+        50% { 
+          transform: translateZ(20px) rotateX(5deg);
+        }
+      }
+      
+      .float-3d {
+        animation: float3d 4s ease-in-out infinite;
+      }
+      
+      .glow-3d {
+        box-shadow: 
+          0 0 20px rgba(59, 130, 246, 0.3),
+          0 0 60px rgba(59, 130, 246, 0.1),
+          inset 0 0 20px rgba(59, 130, 246, 0.1);
+      }
+      
+      .product-card:hover .glow-3d {
+        box-shadow: 
+          0 0 30px rgba(59, 130, 246, 0.5),
+          0 0 80px rgba(59, 130, 246, 0.2),
+          inset 0 0 30px rgba(59, 130, 246, 0.15);
+      }
+      
+      /* Timeline CSS overrides for blue theme */
+      .cd-timeline {
+        background: transparent !important;
+        color: #E2E8F0 !important;
+      }
+      
+      .cd-timeline__container::before {
+        background: linear-gradient(to bottom, #1E40AF, #3B82F6, #1E40AF) !important;
+        width: 6px !important;
+        box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+      }
+      
+      .cd-timeline__img {
+        box-shadow: 0 0 0 6px rgba(59, 130, 246, 0.2), inset 0 2px 0 rgba(0,0,0,0.08), 0 3px 0 4px rgba(0,0,0,0.05) !important;
+      }
+      
+      .cd-timeline__content {
+        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15) !important;
+      }
+      
+      .cd-timeline__content::before {
+        border-right-color: rgba(10, 15, 28, 0.9) !important;
+      }
+      
+      @media (min-width: 64rem) {
+        .cd-timeline__block:nth-child(odd) .cd-timeline__content::before {
+          border-left-color: rgba(10, 15, 28, 0.9) !important;
+          border-right-color: transparent !important;
+        }
+      }
+      
+      .cd-timeline__date {
+        color: #60A5FA !important;
+        font-weight: 500 !important;
+      }
+      ol[class*="border-s-2"] {
+        border-image: linear-gradient(to bottom, #1E40AF 0%, #3B82F6 50%, #1E40AF 100%) 1;
+        border-left: 2px solid;
+        border-image-slice: 1;
+      }
+      
+      ol[class*="border-s-2"]::before {
+        content: '';
+        position: absolute;
+        left: -1px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(to bottom, rgba(30, 64, 175, 0.8) 0%, rgba(59, 130, 246, 0.9) 50%, rgba(30, 64, 175, 0.3) 100%);
+        box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+      }
+
+      .gallery-container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .gallery-main {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
+      .gallery-main .swiper-slide {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .gallery-card {
+        position: relative;
+        width: 350px;
+        height: 450px;
+        border-radius: 24px;
+        overflow: hidden;
+        background: linear-gradient(145deg, rgba(5, 8, 22, 0.9), rgba(59, 130, 246, 0.1));
+        border: 2px solid rgba(59, 130, 246, 0.2);
+        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5), 0 0 50px rgba(59, 130, 246, 0.1);
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        backdrop-filter: blur(15px);
+      }
+
+      .gallery-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .gallery-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 24px;
+        background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+        z-index: 2;
+      }
+
+      .gallery-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 8px;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      }
+
+      .gallery-subtitle {
+        font-size: 0.9rem;
+        color: rgba(59, 130, 246, 0.9);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .gallery-thumbs-container {
+        margin-top: 32px;
+        position: relative;
+      }
+
+      .gallery-thumbs {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        height: 120px;
+      }
+
+      .gallery-thumbs .swiper-slide {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .thumb-card {
+        width: 80px;
+        height: 80px;
+        border-radius: 16px;
+        overflow: hidden;
+        background: linear-gradient(145deg, rgba(5, 8, 22, 0.7), rgba(59, 130, 246, 0.1));
+        border: 2px solid rgba(59, 130, 246, 0.3);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        backdrop-filter: blur(10px);
+        position: relative;
+      }
+
+      .thumb-card:hover {
+        transform: translateY(-5px) scale(1.1);
+        border-color: rgba(59, 130, 246, 0.8);
+        box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+      }
+
+      .thumb-card.swiper-slide-thumb-active {
+        transform: translateY(-8px) scale(1.2);
+        border-color: rgba(59, 130, 246, 1);
+        box-shadow: 0 15px 40px rgba(59, 130, 246, 0.5);
+      }
+
+      .thumb-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        transition: transform 0.3s ease;
+      }
+
+      .thumb-card:hover .thumb-image {
+        transform: scale(1.1);
+      }
+
+      .gallery-controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 24px;
+      }
+
+      .gallery-btn-prev,
+      .gallery-btn-next {
+        background: none;
+        border: none;
+        color: #3b82f6;
+        font-size: 18px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        padding: 2px 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        min-width: 28px;
+        height: 28px;
+      }
+
+      .gallery-btn-prev:hover,
+      .gallery-btn-next:hover {
+        color: #ffffff;
+        background: rgba(59, 130, 246, 0.2);
+        transform: scale(1.1);
+      }
+
+      .gallery-btn-prev:active,
+      .gallery-btn-next:active {
+        transform: scale(0.95);
+      }
+
+     .gallery-pagination {
+        text-align: center;
+        min-width: 50px;
+      }
+
+      .gallery-pagination .swiper-pagination-fraction {
+        color: rgba(59, 130, 246, 0.9);
+        font-weight: 600;
+        font-size: 16px;
+        letter-spacing: 1px;
+        margin: 0;
+        display: inline-block;
+      }
+
+      @media screen and (max-width: 768px) {
+        .gallery-card {
+          width: 300px;
+          height: 380px;
+        }
+        
+        .thumb-card {
+          width: 60px;
+          height: 60px;
+        }
+        
+        .gallery-btn-prev,
+        .gallery-btn-next {
+          display: none;
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        .gallery-card {
+          width: 280px;
+          height: 350px;
+          border-radius: 20px;
+        }
+        
+        .thumb-card {
+          width: 50px;
+          height: 50px;
+          border-radius: 12px;
+        }
+        
+        .gallery-title {
+          font-size: 1.25rem;
+        }
+        
+        .gallery-subtitle {
+          font-size: 0.8rem;
+        }
+      }
+    </style>
+    <title>Bock Space</title>
+  </head>
+  <body class="font-poppins m-0 min-h-screen overflow-x-hidden">
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+    
+    <!-- Enhanced Navigation (Responsive) -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-primary/80 backdrop-blur-xl border-b border-accent/20">
+      <div class="max-w-7xl mx-auto px-4 py-3">
+        <div class="flex items-center justify-between h-16">
+          <!-- Logo and Title -->
+          <div class="flex items-center gap-3">
+            <div class="relative flex-shrink-0">
+              <img src="assets/Space.svg" alt="Bock Space" class="w-10 h-10 filter drop-shadow-lg">
+              <div class="absolute -inset-1 bg-gradient-to-r from-accent to-electric rounded-full opacity-30 blur-sm"></div>
+            </div>
+            <span class="text-xl font-bold text-white whitespace-nowrap">Bock Space</span>
+          </div>
+          <!-- Hamburger for mobile -->
+          <button id="nav-toggle" class="lg:hidden block text-white focus:outline-none p-2 rounded-md hover:bg-accent/20 transition" aria-label="Open menu">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+          <!-- Desktop Nav -->
+          <div id="nav-menu" class="hidden lg:flex flex-row items-center gap-6">
+            <a href="#products" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm font-medium px-2 py-1 rounded">Products</a>
+            <a href="#work" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm font-medium px-2 py-1 rounded">Work at Bock</a>
+            <a href="https://bockbharath.com/" class="bg-gradient-to-r from-secondary to-accent px-4 py-2 rounded-lg text-white text-sm font-medium hover:shadow-lg hover:shadow-accent/25 transition-all duration-300">Back to Bock</a>
+          </div>
+        </div>
+      </div>
+      <!-- Mobile Nav Overlay -->
+      <div id="nav-backdrop" class="fixed inset-0 bg-black/40 z-40 hidden transition-opacity duration-300"></div>
+      <div id="nav-mobile-menu" class="fixed top-0 left-0 right-0 z-50 bg-primary/95 backdrop-blur-xl border-b border-accent/20 shadow-lg px-6 py-6 flex flex-col gap-4 items-center w-full transition-transform duration-300 -translate-y-full lg:hidden">
+        <a href="#products" class="block w-full text-center text-gray-300 hover:text-white transition-colors duration-200 text-base font-medium py-3">Products</a>
+        <div class="border-t border-accent/20 w-full"></div>
+        <a href="#work" class="block w-full text-center text-gray-300 hover:text-white transition-colors duration-200 text-base font-medium py-3">Work at Bock</a>
+        <div class="border-t border-accent/20 w-full"></div>
+        <a href="https://bockbharath.com/" class="block w-full text-center bg-gradient-to-r from-secondary to-accent px-4 py-3 rounded-lg text-white text-base font-medium hover:shadow-lg hover:shadow-accent/25 transition-all duration-300">Back to Bock</a>
+      </div>
+    </nav>
+    <script>
+      // Mobile nav toggle with backdrop and smooth transition
+      document.addEventListener('DOMContentLoaded', function() {
+        var navToggle = document.getElementById('nav-toggle');
+        var navMenu = document.getElementById('nav-menu');
+        var navMobileMenu = document.getElementById('nav-mobile-menu');
+        var navBackdrop = document.getElementById('nav-backdrop');
+        function openMenu() {
+          navMobileMenu.classList.remove('-translate-y-full');
+          navMobileMenu.classList.add('translate-y-0');
+          navBackdrop.classList.remove('hidden');
+          navBackdrop.classList.add('opacity-100');
+        }
+        function closeMenu() {
+          navMobileMenu.classList.add('-translate-y-full');
+          navMobileMenu.classList.remove('translate-y-0');
+          navBackdrop.classList.add('hidden');
+          navBackdrop.classList.remove('opacity-100');
+        }
+        navToggle.addEventListener('click', function() {
+          if (navMobileMenu.classList.contains('-translate-y-full')) {
+            openMenu();
+          } else {
+            closeMenu();
+          }
+        });
+        navBackdrop.addEventListener('click', closeMenu);
+        Array.from(navMobileMenu.querySelectorAll('a')).forEach(function(link) {
+          link.addEventListener('click', closeMenu);
+        });
+      });
+    </script>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0">
+            <div class="absolute inset-0 bg-gradient-to-br from-primary via-midnight to-primary-dark"></div>
+            <div class="absolute top-20 left-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"></div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-electric/5 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6 py-20">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Content -->
+                <div class="text-center lg:text-left">
+                    <div class="mb-6">
+                        <h1 class="text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+                            Bock 
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-electric">
+                                Space
+                            </span>
+                        </h1>
+                        <h2 class="text-xl lg:text-2xl text-gray-300 mb-8 font-light">
+                            Commercialization of space travel
+                        </h2>
+                    </div>
+                    
+                    <p class="text-gray-400 text-lg leading-relaxed mb-8 max-w-2xl">
+                        Bock Space is a space research organization managing four bodies under it. We're building a robust system for space technology that is highly ambitious in taking mankind towards advancements.
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                        <a href="Copy of Bock Company Handbook (Version 1.3).pdf" download class="group relative px-8 py-4 bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-xl hover:shadow-2xl hover:shadow-accent/25 transition-all duration-300 transform hover:-translate-y-1">
+                            <span class="relative z-10">Company Handbook</span>
+                            <div class="absolute inset-0 bg-gradient-to-r from-accent to-electric opacity-0 group-hover:opacity-100 rounded-xl transition-opacity duration-300"></div>
+                        </a>
+                        <a href="#work" class="px-8 py-4 border border-accent/40 text-white font-semibold rounded-xl hover:bg-accent/10 transition-all duration-300">
+                            View Timeline
+                        </a>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="flex justify-center lg:justify-start gap-4">
+                        <a href="https://www.instagram.com/bockspacebharath" class="w-12 h-12 bg-primary-dark/50 border border-accent/30 rounded-xl flex items-center justify-center text-gray-400 hover:text-white hover:border-accent transition-all duration-300">
+                            <i class="ri-instagram-line text-xl"></i>
+                        </a>
+                        <a href="https://www.x.com/bockSpaceBH" class="w-12 h-12 bg-primary-dark/50 border border-accent/30 rounded-xl flex items-center justify-center text-gray-400 hover:text-white hover:border-accent transition-all duration-300">
+                            <i class="ri-twitter-fill text-xl"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@bockspacebharath" class="w-12 h-12 bg-primary-dark/50 border border-accent/30 rounded-xl flex items-center justify-center text-gray-400 hover:text-white hover:border-accent transition-all duration-300">
+                            <i class="ri-youtube-fill text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Rocket Visual -->
+                <div class="relative flex justify-center lg:justify-end">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-r from-accent/20 to-electric/20 rounded-full blur-3xl scale-150"></div>
+                        <img src="assets/rocket_middle2.png" alt="Bock Space Rocket" class="relative z-10 w-80 h-auto max-w-full">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Responsive Showcase Gallery -->
+    <section class="gallery-section py-20 relative z-10" id="gallery">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-1 bg-blue-600/20 text-blue-400 text-sm font-semibold rounded-full mb-4">
+            Showcase
+          </span>
+          <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">
+            Our <span class="text-blue-500">Space</span> Gallery
+          </h2>
+          <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            Explore our cutting-edge space technology and aerospace exploration solutions
+          </p>
+        </div>
+
+        <!-- Main Gallery Container -->
+        <div class="gallery-container mx-auto">
+          <!-- Main Swiper -->
+          <div class="swiper gallery-main mb-8">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="gallery-card">
+                  <img src="assets/img/img1.jpg" alt="Inertia Nano" class="gallery-image" />
+                  <div class="gallery-overlay">
+                    <h3 class="gallery-title">Inertia Nano</h3>
+                    <p class="gallery-subtitle">Nanosatellite</p>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="gallery-card">
+                  <img src="assets/img/img2.jpg" alt="Launch Vehicle" class="gallery-image" />
+                  <div class="gallery-overlay">
+                    <h3 class="gallery-title">Launch Vehicle</h3>
+                    <p class="gallery-subtitle">Reusable Rocket</p>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="gallery-card">
+                  <img src="assets/img/img3.jpg" alt="Mission Control" class="gallery-image" />
+                  <div class="gallery-overlay">
+                    <h3 class="gallery-title">Mission Control</h3>
+                    <p class="gallery-subtitle">Space Operations</p>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="gallery-card">
+                  <img src="assets/img/img4.jpg" alt="Space Shuttle" class="gallery-image" />
+                  <div class="gallery-overlay">
+                    <h3 class="gallery-title">Space Shuttle</h3>
+                    <p class="gallery-subtitle">Orbital Vehicle</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Thumbnail Gallery -->
+          <div class="gallery-thumbs-container relative">
+            <div class="swiper gallery-thumbs">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div class="thumb-card">
+                    <img src="assets/img/img1.jpg" alt="Inertia Nano" class="thumb-image" />
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="thumb-card">
+                    <img src="assets/img/img2.jpg" alt="Launch Vehicle" class="thumb-image" />
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="thumb-card">
+                    <img src="assets/img/img3.jpg" alt="Mission Control" class="thumb-image" />
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="thumb-card">
+                    <img src="assets/img/img4.jpg" alt="Space Shuttle" class="thumb-image" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Pagination with Navigation -->
+            <div class="gallery-controls">
+              <button class="gallery-btn-prev">
+                <i class="ri-arrow-left-line"></i>
+              </button>
+              <div class="gallery-pagination"></div>
+              <button class="gallery-btn-next">
+                <i class="ri-arrow-right-line"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  <!-- Products Section -->
+  <section id="products" class="relative py-20 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-primary to-primary-dark"></div>
+    <div class="absolute top-10 left-20 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-10 right-20 w-80 h-80 bg-accent/5 rounded-full blur-3xl"></div>
+    
+    <div class="relative z-10 max-w-7xl mx-auto px-6">
+      <!-- Section Header -->
+      <div class="text-center mb-16">
+        <span class="inline-block px-4 py-2 bg-accent/10 border border-accent/30 rounded-full text-electric text-sm font-medium mb-4">
+           Space Products
+        </span>
+        <h2 class="text-4xl lg:text-5xl font-bold text-white mb-6">
+          Our Space
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-electric">
+            Products
+          </span>
+        </h2>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <!-- Product 1: Inertia Nano -->
+        <a href="product-details.html?product=inertia-nano" class="product-card group block">
+          <div class="product-inner glass-effect glow-3d rounded-2xl p-6 h-full">
+            <div class="product-icon float-3d text-center mb-6">
+              <div class="w-16 h-16 mx-auto bg-gradient-to-r from-accent to-electric rounded-xl flex items-center justify-center mb-4">
+                <i class="ri-rocket-2-line text-2xl text-white"></i>
+              </div>
+              <div class="w-12 h-1 bg-gradient-to-r from-accent to-electric rounded-full mx-auto opacity-60"></div>
+            </div>
+            <div class="product-content">
+              <h3 class="text-xl font-bold text-white mb-3 glow-text">Inertia Nano</h3>
+              <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                Compact nanosatellite platform designed for research missions and educational purposes. Features advanced miniaturized systems for space exploration.
+              </p>
+              <div class="flex items-center justify-between mt-4">
+                <span class="text-electric text-xs font-medium">Nanosatellite</span>
+                <div class="flex space-x-1">
+                  <div class="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
+                  <div class="w-2 h-2 bg-secondary rounded-full animate-pulse" style="animation-delay: 0.2s"></div>
+                  <div class="w-2 h-2 bg-electric rounded-full animate-pulse" style="animation-delay: 0.4s"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Product 2: Inertia -->
+        <a href="product-details.html?product=inertia" class="product-card group block">
+          <div class="product-inner glass-effect glow-3d rounded-2xl p-6 h-full">
+            <div class="product-icon float-3d text-center mb-6">
+              <div class="w-16 h-16 mx-auto bg-gradient-to-r from-secondary to-accent rounded-xl flex items-center justify-center mb-4">
+                <i class="ri-satellite-line text-2xl text-white"></i>
+              </div>
+              <div class="w-12 h-1 bg-gradient-to-r from-secondary to-accent rounded-full mx-auto opacity-60"></div>
+            </div>
+            <div class="product-content">
+              <h3 class="text-xl font-bold text-white mb-3 glow-text">Inertia</h3>
+              <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                Mid-range satellite system with enhanced communication capabilities and scientific instrumentation for comprehensive space missions.
+              </p>
+              <div class="flex items-center justify-between mt-4">
+                <span class="text-electric text-xs font-medium">Communication Satellite</span>
+                <div class="flex space-x-1">
+                  <div class="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
+                  <div class="w-2 h-2 bg-secondary rounded-full animate-pulse" style="animation-delay: 0.2s"></div>
+                  <div class="w-2 h-2 bg-electric rounded-full animate-pulse" style="animation-delay: 0.4s"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Product 3: Inertia Mega -->
+        <a href="product-details.html?product=inertia-mega" class="product-card group block">
+          <div class="product-inner glass-effect glow-3d rounded-2xl p-6 h-full">
+            <div class="product-icon float-3d text-center mb-6">
+              <div class="w-16 h-16 mx-auto bg-gradient-to-r from-electric to-azure rounded-xl flex items-center justify-center mb-4">
+                <i class="ri-space-ship-line text-2xl text-white"></i>
+              </div>
+              <div class="w-12 h-1 bg-gradient-to-r from-electric to-azure rounded-full mx-auto opacity-60"></div>
+            </div>
+            <div class="product-content">
+              <h3 class="text-xl font-bold text-white mb-3 glow-text">Inertia Mega</h3>
+              <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                Large-scale satellite platform with advanced propulsion systems and deep space exploration capabilities for ambitious missions.
+              </p>
+              <div class="flex items-center justify-between mt-4">
+                <span class="text-electric text-xs font-medium">Deep Space Explorer</span>
+                <div class="flex space-x-1">
+                  <div class="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
+                  <div class="w-2 h-2 bg-secondary rounded-full animate-pulse" style="animation-delay: 0.2s"></div>
+                  <div class="w-2 h-2 bg-electric rounded-full animate-pulse" style="animation-delay: 0.4s"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Product 4: Momentum -->
+        <a href="product-details.html?product=momentum" class="product-card group block">
+          <div class="product-inner glass-effect glow-3d rounded-2xl p-6 h-full">
+            <div class="product-icon float-3d text-center mb-6">
+              <div class="w-16 h-16 mx-auto bg-gradient-to-r from-secondary to-electric rounded-xl flex items-center justify-center mb-4">
+                <i class="ri-rocket-line text-2xl text-white"></i>
+              </div>
+              <div class="w-12 h-1 bg-gradient-to-r from-secondary to-electric rounded-full mx-auto opacity-60"></div>
+            </div>
+            <div class="product-content">
+              <h3 class="text-xl font-bold text-white mb-3 glow-text">Momentum</h3>
+              <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                High-performance propulsion system designed for efficient orbital transfers and interplanetary missions with advanced fuel management.
+              </p>
+              <div class="flex items-center justify-between mt-4">
+                <span class="text-electric text-xs font-medium">Propulsion System</span>
+                <div class="flex space-x-1">
+                  <div class="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
+                  <div class="w-2 h-2 bg-secondary rounded-full animate-pulse" style="animation-delay: 0.2s"></div>
+                  <div class="w-2 h-2 bg-electric rounded-full animate-pulse" style="animation-delay: 0.4s"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Product 5: Zeyon X90 -->
+        <a href="product-details.html?product=zeyon-x90" class="product-card group block">
+          <div class="product-inner glass-effect glow-3d rounded-2xl p-6 h-full">
+            <div class="product-icon float-3d text-center mb-6">
+              <div class="w-16 h-16 mx-auto bg-gradient-to-r from-accent to-secondary rounded-xl flex items-center justify-center mb-4">
+                <i class="ri-radar-line text-2xl text-white"></i>
+              </div>
+              <div class="w-12 h-1 bg-gradient-to-r from-accent to-secondary rounded-full mx-auto opacity-60"></div>
+            </div>
+            <div class="product-content">
+              <h3 class="text-xl font-bold text-white mb-3 glow-text">Zeyon X90</h3>
+              <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                Advanced navigation and guidance system with AI-powered autonomous capabilities for precision spacecraft maneuvering and landing operations.
+              </p>
+              <div class="flex items-center justify-between mt-4">
+                <span class="text-electric text-xs font-medium">Navigation System</span>
+                <div class="flex space-x-1">
+                  <div class="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
+                  <div class="w-2 h-2 bg-secondary rounded-full animate-pulse" style="animation-delay: 0.2s"></div>
+                  <div class="w-2 h-2 bg-electric rounded-full animate-pulse" style="animation-delay: 0.4s"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Product 6: Space Launch Vehicle -->
+        <a href="product-details.html?product=launch-vehicle" class="product-card group block">
+          <div class="product-inner glass-effect glow-3d rounded-2xl p-6 h-full">
+            <div class="product-icon float-3d text-center mb-6">
+              <div class="w-16 h-16 mx-auto bg-gradient-to-r from-electric to-accent rounded-xl flex items-center justify-center mb-4">
+                <i class="ri-rocket-2-fill text-2xl text-white"></i>
+              </div>
+              <div class="w-12 h-1 bg-gradient-to-r from-electric to-accent rounded-full mx-auto opacity-60"></div>
+            </div>
+            <div class="product-content">
+              <h3 class="text-xl font-bold text-white mb-3 glow-text">Launch Vehicle</h3>
+              <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                Reusable launch vehicle capable of delivering payloads to various orbits with cost-effective and environmentally conscious design principles.
+              </p>
+              <div class="flex items-center justify-between mt-4">
+                <span class="text-electric text-xs font-medium">Launch System</span>
+                <div class="flex space-x-1">
+                  <div class="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
+                  <div class="w-2 h-2 bg-secondary rounded-full animate-pulse" style="animation-delay: 0.2s"></div>
+                  <div class="w-2 h-2 bg-electric rounded-full animate-pulse" style="animation-delay: 0.4s"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- CTA Section -->
+      <div class="text-center">
+        <p class="text-gray-400 mb-6">Interested in our space technology solutions?</p>
+        <a href="#work" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-secondary to-accent text-white font-semibold rounded-xl hover:shadow-2xl hover:shadow-accent/25 transition-all duration-300 transform hover:-translate-y-1">
+          <span>View Development Timeline</span>
+          <i class="ri-arrow-right-line ml-2"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Space Roadmap -->
+  <section id="work" class="relative py-12 sm:py-16">
+    <div class="mx-auto max-w-7xl px-4 md:px-6">
+      <div class="text-center">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white font-display">Space Roadmap</h2>
+        <p class="mt-2 sm:mt-3 text-base sm:text-lg text-white/70">A clear sequence of milestones guiding our journey to the stars.</p>
+      </div>
+
+      <!-- Enhanced vertical timeline with space design -->
+      <ol class="relative mt-8 sm:mt-10 md:mt-12 max-w-4xl mx-auto border-s-2 border-blue-600/50">
+        <li class="relative ps-6 sm:ps-8 md:ps-10 py-4 sm:py-5 md:py-6 group hover:ps-8 sm:hover:ps-10 md:hover:ps-12 transition-all duration-300">
+          <div class="bg-gradient-to-r from-white/5 to-transparent rounded-lg p-3 sm:p-4 backdrop-blur-sm border border-white/10 group-hover:border-secondary/30 transition-colors">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4">
+              <div class="flex-1">
+                <h4 class="text-white font-bold text-base sm:text-lg font-display">Phase 0 — Training/Internship</h4>
+                <p class="text-white/70 text-sm sm:text-base mt-1">Space technology fundamentals, team setup and research foundation.</p>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="relative ps-6 sm:ps-8 md:ps-10 py-4 sm:py-5 md:py-6 group hover:ps-8 sm:hover:ps-10 md:hover:ps-12 transition-all duration-300">
+          <div class="bg-gradient-to-r from-white/5 to-transparent rounded-lg p-3 sm:p-4 backdrop-blur-sm border border-white/10 group-hover:border-secondary/30 transition-colors">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4">
+              <div class="flex-1">
+                <h4 class="text-white font-bold text-base sm:text-lg font-display">Phase 1 — Satellite Design & Development</h4>
+                <p class="text-white/70 text-sm sm:text-base mt-1">Design and build advanced satellite systems and space vehicles.</p>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="relative ps-6 sm:ps-8 md:ps-10 py-4 sm:py-5 md:py-6 group hover:ps-8 sm:hover:ps-10 md:hover:ps-12 transition-all duration-300">
+          <div class="bg-gradient-to-r from-white/5 to-transparent rounded-lg p-3 sm:p-4 backdrop-blur-sm border border-white/10 group-hover:border-secondary/30 transition-colors">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4">
+              <div class="flex-1">
+                <h4 class="text-white font-bold text-base sm:text-lg font-display">Phase 2 — Build Space Technology MVP</h4>
+                <p class="text-white/70 text-sm sm:text-base mt-1">Prototype development and space technology testing.</p>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="relative ps-6 sm:ps-8 md:ps-10 py-4 sm:py-5 md:py-6 group hover:ps-8 sm:hover:ps-10 md:hover:ps-12 transition-all duration-300">
+          <div class="bg-gradient-to-r from-white/5 to-transparent rounded-lg p-3 sm:p-4 backdrop-blur-sm border border-white/10 group-hover:border-secondary/30 transition-colors">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4">
+              <div class="flex-1">
+                <h4 class="text-white font-bold text-base sm:text-lg font-display">Phase 3 — Virtual Space Facility</h4>
+                <p class="text-white/70 text-sm sm:text-base mt-1">Digital twin and space mission simulation in Omniverse.</p>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="relative ps-6 sm:ps-8 md:ps-10 py-4 sm:py-5 md:py-6 group hover:ps-8 sm:hover:ps-10 md:hover:ps-12 transition-all duration-300">
+          <div class="bg-gradient-to-r from-white/5 to-transparent rounded-lg p-3 sm:p-4 backdrop-blur-sm border border-white/10 group-hover:border-white/20 transition-colors">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4">
+              <div class="flex-1">
+                <h4 class="text-white font-bold text-base sm:text-lg font-display">Phase 4/5 — Funding → Space Manufacturing</h4>
+                <p class="text-white/70 text-sm sm:text-base mt-1">Scale-up space operations and build manufacturing facilities.</p>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="relative ps-6 sm:ps-8 md:ps-10 py-4 sm:py-5 md:py-6 group hover:ps-8 sm:hover:ps-10 md:hover:ps-12 transition-all duration-300">
+          <div class="bg-gradient-to-r from-white/5 to-transparent rounded-lg p-3 sm:p-4 backdrop-blur-sm border border-white/10 group-hover:border-secondary/30 transition-colors">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4">
+              <div class="flex-1">
+                <h4 class="text-white font-bold text-base sm:text-lg font-display">Phase 6 — Space Vehicle Production</h4>
+                <p class="text-white/70 text-sm sm:text-base mt-1">First 500 space vehicles will be manufactured (20 vehicles will be launched in the first round).</p>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ol>
+
+      <div class="mt-6 sm:mt-8 h-px w-full bg-gradient-to-r from-transparent via-secondary/40 to-transparent"></div>
+    </div>
+  </section>
+
+  <footer class="relative bg-gradient-to-b from-primary via-black to-primary text-white border-t border-white/10">
+    <div class="absolute inset-0 bg-[linear-gradient(135deg,#000000,30%,#0a0a0a,70%,#140000)] opacity-50"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div class="space-y-6">
+          <div>
+            <h2 class="text-2xl font-bold text-secondary mb-2">
+              BOCK
+            </h2>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Innovating across multiple industries with cutting-edge technology and sustainable solutions for a better tomorrow.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold text-white mb-4">Company</h3>
+            <nav class="space-y-3">
+              <a href="https://bockbharath.com/aboutus.html" class="block text-gray-400 hover:underline underline-offset-4 decoration-blue-600 decoration-2 transition-colors duration-200 text-sm">About Us</a>
+              <a href="https://bockbharath.com/sop.html" class="block text-gray-400 hover:underline underline-offset-4 decoration-blue-600 decoration-2 transition-colors duration-200 text-sm">Employees & SOPs</a>
+              <a href="https://bockbharath.com/progress.html" class="block text-gray-400 hover:underline underline-offset-4 decoration-blue-600 decoration-2 transition-colors duration-200 text-sm">Progress</a>
+            </nav>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-6">Products</h3>
+          <div class="grid grid-cols-2 gap-x-8 gap-y-3 text-sm">
+            <a href="#" class="text-gray-400 hover:underline underline-offset-4 decoration-blue-600 decoration-2 transition-colors duration-200">Automative EV1</a>
+            <a href="#" class="text-gray-400 hover:underline underline-offset-4 decoration-blue-600 decoration-2 transition-colors duration-200">Automative SPV</a>
+            <a href="#" class="text-gray-400 hover:underline underline-offset-4 decoration-blue-600 decoration-2 transition-colors duration-200">Bock Foods</a>
+            <a href="#" class="text-gray-400 hover:underline underline-offset-4 decoration-blue-600 decoration-2 transition-colors duration-200">DroBock</a>
+            <a href="#" class="text-gray-400 hover:underline underline-offset-4 decoration-blue-600 decoration-2 transition-colors duration-200">ZipDroBock</a>
+            <a href="#" class="text-gray-400 hover:underline underline-offset-4 decoration-blue-600 decoration-2 transition-colors duration-200">Inertia Nano</a>
+            <a href="#" class="text-gray-400 hover:underline underline-offset-4 decoration-blue-600 decoration-2 transition-colors duration-200">Inertia</a>
+            <a href="#" class="text-gray-400 hover:underline underline-offset-4 decoration-blue-600 decoration-2 transition-colors duration-200">Inertia Mega</a>
+            <a href="#" class="text-gray-400 hover:underline underline-offset-4 decoration-blue-600 decoration-2 transition-colors duration-200">Momentum</a>
+            <a href="#" class="text-gray-400 hover:underline underline-offset-4 decoration-blue-600 decoration-2 transition-colors duration-200">Zeyon X90</a>
+            <a href="#" class="text-gray-400 hover:underline underline-offset-4 decoration-blue-600 decoration-2 transition-colors duration-200">E-commerce</a>
+            <a href="#" class="text-gray-400 hover:underline underline-offset-4 decoration-blue-600 decoration-2 transition-colors duration-200">BQP</a>
+            <a href="#" class="text-gray-400 hover:underline underline-offset-4 decoration-blue-600 decoration-2 transition-colors duration-200">BAVT</a>
+            <a href="#" class="text-gray-400 hover:underline underline-offset-4 decoration-blue-600 decoration-2 transition-colors duration-200">Orventus</a>
+            <a href="#" class="text-gray-400 hover:underline underline-offset-4 decoration-blue-600 decoration-2 transition-colors duration-200">Eira</a>
+            <a href="#" class="text-gray-400 hover:underline underline-offset-4 decoration-blue-600 decoration-2 transition-colors duration-200">Typhronex</a>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-6">Businesses</h3>
+          <nav class="space-y-3 text-sm">
+            <a href="https://automotive.bockbharath.com" class="flex items-center gap-3 text-gray-400 hover:underline underline-offset-4 decoration-blue-600 decoration-2 transition group">
+              <div class="w-2 h-2 bg-orange-500 rounded-full opacity-60 group-hover:opacity-100"></div>
+              Bock Automotive
+            </a>
+            <a href="https://foods.bockbharath.com" class="flex items-center gap-3 text-gray-400 hover:underline underline-offset-4 decoration-blue-600 decoration-2 transition group">
+              <div class="w-2 h-2 bg-green-500 rounded-full opacity-60 group-hover:opacity-100"></div>
+              Bock Foods
+            </a>
+            <a href="https://space.bockbharath.com" class="flex items-center gap-3 text-gray-400 hover:underline underline-offset-4 decoration-blue-600 decoration-2 transition group">
+              <div class="w-2 h-2 bg-purple-500 rounded-full opacity-60 group-hover:opacity-100"></div>
+              Bock Space
+            </a>
+            <a href="https://ai.bockbharath.com" class="flex items-center gap-3 text-gray-400 hover:underline underline-offset-4 decoration-blue-600 decoration-2 transition group">
+              <div class="w-2 h-2 bg-blue-500 rounded-full opacity-60 group-hover:opacity-100"></div>
+              Bock AI
+            </a>
+            <a href="https://health.bockbharath.com" class="flex items-center gap-3 text-gray-400 hover:underline underline-offset-4 decoration-blue-600 decoration-2 transition group">
+              <div class="w-2 h-2 bg-teal-500 rounded-full opacity-60 group-hover:opacity-100"></div>
+              Bock Health
+            </a>
+            <a href="https://chain.bockbharath.com" class="flex items-center gap-3 text-gray-400 hover:underline underline-offset-4 decoration-blue-600 decoration-2 transition group">
+              <div class="w-2 h-2 bg-indigo-500 rounded-full opacity-60 group-hover:opacity-100"></div>
+              Bock Chain
+            </a>
+            <a href="#" class="flex items-center gap-3 text-gray-400 hover:underline underline-offset-4 decoration-blue-600 decoration-2 transition group">
+              <div class="w-2 h-2 bg-yellow-500 rounded-full opacity-60 group-hover:opacity-100"></div>
+              Bock Institute
+            </a>
+            <a href="#" class="flex items-center gap-3 text-gray-400 hover:underline underline-offset-4 decoration-blue-600 decoration-2 transition group">
+              <div class="w-2 h-2 bg-red-500 rounded-full opacity-60 group-hover:opacity-100"></div>
+              Bock Force
+            </a>
+          </nav>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-6">Contact Us</h3>
+          <div class="space-y-4 mb-6 text-sm">
+            <div class="flex items-center gap-3">
+              <i class="ri-mail-line text-secondary text-lg"></i>
+              <a href="mailto:info@bockbharath.com" class="text-gray-400 hover:text-white transition">info@bockbharath.com</a>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="ri-phone-line text-secondary text-lg"></i>
+              <a href="tel:+916360288456" class="text-gray-400 hover:text-white transition">+91 6360288456</a>
+            </div>
+          </div>
+          <div>
+            <h4 class="text-sm font-medium text-white mb-4">Follow Us</h4>
+            <div class="flex gap-4">
+              <a href="https://www.facebook.com/bockbharath/" class="w-10 h-10 bg-gray-800 hover:bg-blue-600 rounded-lg flex items-center justify-center transition group"><i class="ri-facebook-fill text-gray-400 group-hover:text-white text-lg"></i></a>
+              <a href="https://www.linkedin.com/company/bockbharth/" class="w-10 h-10 bg-gray-800 hover:bg-blue-700 rounded-lg flex items-center justify-center transition group"><i class="ri-linkedin-fill text-gray-400 group-hover:text-white text-lg"></i></a>
+              <a href="https://x.com/BockBH" class="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition group"><i class="ri-twitter-fill text-gray-400 group-hover:text-white text-lg"></i></a>
+              <a href="https://www.instagram.com/bockbharath" class="w-10 h-10 bg-gray-800 hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 rounded-lg flex items-center justify-center transition-all group"><i class="ri-instagram-fill text-gray-400 group-hover:text-white text-lg"></i></a>
+              <a href="https://www.youtube.com/@bockbharath" class="w-10 h-10 bg-gray-800 hover:bg-red-600 rounded-lg flex items-center justify-center transition group"><i class="ri-youtube-fill text-gray-400 group-hover:text-white text-lg"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/20 pt-8">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+          <div class="text-center md:text-left">
+            <p class="text-gray-400 text-sm">© 2024–2025 BOCK™. All Rights Reserved.</p>
+            <p class="text-gray-500 text-xs mt-1">Octakaigon Bock Private Limited</p>
+          </div>
+          <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="flex items-center gap-2 px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg transition text-sm">
+            <span class="text-gray-400">Back to top</span>
+            <i class="ri-arrow-up-line text-gray-400"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  
+  <script src="assets-extra/js/main.js"></script>
+  <script src="assets/js/swiper-bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  
+  <!-- Scroll Progress Bar JavaScript -->
+  <script>
+    // Update scroll progress bar
+    window.addEventListener('scroll', function() {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      const progressBar = document.getElementById('scroll-progress');
+      
+      if (progressBar) {
+        progressBar.style.width = scrollPercent + '%';
+      }
+    });
+
+    // Space Roadmap moving dot synced to scroll
+    (function(){
+      const roadSection = document.getElementById('work');
+      if(!roadSection) return;
+      const list = roadSection.querySelector('ol');
+      if(!list) return;
+      const items = Array.from(list.querySelectorAll('li'));
+      if(!items.length) return;
+
+      const cursor = document.createElement('span');
+      cursor.id = 'roadmapCursor';
+      cursor.setAttribute('aria-hidden','true');
+      cursor.style.position = 'absolute';
+      cursor.style.left = '-12px';
+      cursor.style.width = '20px';
+      cursor.style.height = '20px';
+      cursor.style.borderRadius = '9999px';
+      cursor.style.background = '#1E40AF';
+      cursor.style.boxShadow = '0 0 18px rgba(30,64,175,0.55)';
+      cursor.style.transition = 'top 360ms cubic-bezier(.22,.61,.36,1)';
+      cursor.style.top = '0px';
+      cursor.style.zIndex = '1';
+      list.appendChild(cursor);
+
+      function clamp(v, min, max){ return Math.max(min, Math.min(max, v)); }
+
+      function updateCursor(){
+        const vpCenter = window.scrollY + window.innerHeight/2;
+        const listRect = list.getBoundingClientRect();
+        const listTop = window.scrollY + listRect.top;
+        const listBottom = window.scrollY + listRect.bottom;
+        const listHeight = Math.max(1, listBottom - listTop);
+        // find closest item center
+        let closestI = 0, closestD = Infinity, closestCenter = listTop;
+        items.forEach((el)=>{
+          const r = el.getBoundingClientRect();
+          const c = window.scrollY + r.top + r.height/2;
+          const d = Math.abs(c - vpCenter);
+          if(d < closestD){ closestD = d; closestI = items.indexOf(el); closestCenter = c; }
+        });
+        // position relative to list
+        const pos = clamp((closestCenter - listTop) / listHeight, 0, 1);
+        const y = pos * listRect.height; // pixels inside list
+        cursor.style.top = `${y - 10}px`;
+      }
+
+      window.addEventListener('scroll', updateCursor, { passive: true });
+      window.addEventListener('resize', updateCursor);
+      updateCursor();
+    })();
+
+    /*=============== MODERN SPACE GALLERY SWIPER (Automotive Style) ===============*/
+
+    // Wait for DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize thumbnail swiper first
+      const galleryThumbs = new Swiper('.gallery-thumbs', {
+        spaceBetween: 10,
+        slidesPerView: 4,
+        centeredSlides: false,
+        slideToClickedSlide: true,
+        watchSlidesProgress: true,
+        grabCursor: true,
+        loop: false,
+        
+        // Responsive breakpoints
+        breakpoints: {
+          320: {
+            slidesPerView: 2,
+            spaceBetween: 8
+          },
+          480: {
+            slidesPerView: 3,
+            spaceBetween: 10
+          },
+          768: {
+            slidesPerView: 4,
+            spaceBetween: 12
+          },
+          1024: {
+            slidesPerView: 4,
+            spaceBetween: 15
+          }
+        }
+      });
+      
+      // Initialize main gallery swiper
+      const galleryMain = new Swiper('.gallery-main', {
+        spaceBetween: 10,
+        slidesPerView: 1,
+        grabCursor: true,
+        loop: false,
+        centeredSlides: true,
+        speed: 800,
+        
+        // Link with thumbnails
+        thumbs: {
+          swiper: galleryThumbs
+        },
+        
+        // Pagination - Main gallery controls the pagination
+        pagination: {
+          el: '.gallery-pagination',
+          type: 'fraction',
+          formatFractionCurrent: function (number) {
+            return ('0' + number).slice(-2);
+          },
+          formatFractionTotal: function (number) {
+            return ('0' + number).slice(-2);
+          }
+        },
+        
+        // Autoplay - Enhanced for continuous movement
+        autoplay: {
+          delay: 4000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+          stopOnLastSlide: false,
+          reverseDirection: false,
+          waitForTransition: true
+        },
+        
+        // Effects
+        effect: 'coverflow',
+        coverflowEffect: {
+          rotate: 20,
+          stretch: 0,
+          depth: 100,
+          modifier: 1,
+          slideShadows: true
+        },
+        
+        // Event callbacks
+        on: {
+          init: function() {
+            console.log('Space Gallery initialized successfully!');
+            // Add initial active state to first thumbnail
+            const firstThumb = document.querySelector('.gallery-thumbs .swiper-slide');
+            if (firstThumb) {
+              firstThumb.classList.add('swiper-slide-thumb-active');
+            }
+          },
+          
+          slideChange: function() {
+            // Update thumbnail active states
+            const thumbSlides = document.querySelectorAll('.gallery-thumbs .swiper-slide');
+            thumbSlides.forEach((slide, index) => {
+              if (index === this.realIndex) {
+                slide.classList.add('swiper-slide-thumb-active');
+              } else {
+                slide.classList.remove('swiper-slide-thumb-active');
+              }
+            });
+          },
+          
+          transitionStart: function() {
+            // Add transition effects
+            const slides = this.slides;
+            slides.forEach(slide => {
+              const image = slide.querySelector('.gallery-image');
+              if (image) {
+                image.style.transform = 'scale(1)';
+              }
+            });
+          },
+          
+          transitionEnd: function() {
+            // Scale active slide image
+            const activeSlide = this.slides[this.activeIndex];
+            if (activeSlide) {
+              const image = activeSlide.querySelector('.gallery-image');
+              if (image) {
+                image.style.transform = 'scale(1.05)';
+              }
+            }
+          },
+          
+          // Handle end of slides for continuous autoplay
+          reachEnd: function() {
+            if (this.autoplay.running) {
+              // When reaching the last slide, go back to first slide
+              setTimeout(() => {
+                this.slideTo(0, 800);
+              }, 4000);
+            }
+          }
+        }
+      });
+      
+      // Add keyboard navigation
+      document.addEventListener('keydown', function(e) {
+        if (!galleryMain) return;
+        
+        switch(e.key) {
+          case 'ArrowLeft':
+            galleryMain.slidePrev();
+            e.preventDefault();
+            break;
+          case 'ArrowRight':
+            galleryMain.slideNext();
+            e.preventDefault();
+            break;
+          case ' ':
+            if (galleryMain.autoplay.running) {
+              galleryMain.autoplay.stop();
+            } else {
+              galleryMain.autoplay.start();
+            }
+            e.preventDefault();
+            break;
+        }
+      });
+      
+      // Manual navigation buttons
+      const prevBtn = document.querySelector('.gallery-btn-prev');
+      const nextBtn = document.querySelector('.gallery-btn-next');
+      
+      if (prevBtn) {
+        prevBtn.addEventListener('click', function() {
+          galleryMain?.slidePrev();
+        });
+      }
+      
+      if (nextBtn) {
+        nextBtn.addEventListener('click', function() {
+          galleryMain?.slideNext();
+        });
+      }
+      
+      // Pause autoplay on hover
+      const gallerySection = document.querySelector('.gallery-container');
+      if (gallerySection) {
+        gallerySection.addEventListener('mouseenter', function() {
+          galleryMain?.autoplay?.stop();
+        });
+        
+        gallerySection.addEventListener('mouseleave', function() {
+          galleryMain?.autoplay?.start();
+        });
+      }
+    });
+  </script>
+  </body>
+</html>
