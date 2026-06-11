@@ -5,6 +5,7 @@ const productData = {
       name: 'Inertia Nano',
       description: 'Revolutionary nanosatellite platform designed for research missions, educational purposes, and commercial applications with advanced miniaturized systems for space exploration.',
       icon: 'ri-rocket-2-line',
+       image: 'image/inertia nano.jpeg',
       category: 'Nanosatellite Systems',
     },
 
@@ -13,7 +14,7 @@ const productData = {
         title: 'Advanced Nano Technology',
         content: 'Our Inertia Nano represents breakthrough miniaturization technology, packing advanced space-grade systems into a compact CubeSat format. With precision engineering and rigorous testing protocols, this nanosatellite delivers exceptional performance for critical research and commercial missions.',
         type: 'content-image',
-        image: 'assets/rocket_middle2.png'
+        image: 'image/inertia nano.jpeg',
       },
       {
         title: 'Nano Mission Operations',
@@ -60,6 +61,7 @@ const productData = {
     subtitle: 'Mid-Range Satellite Platform',
     description: 'Advanced mid-range satellite system with enhanced communication capabilities, scientific instrumentation, and extended mission duration for comprehensive space missions.',
     icon: 'ri-satellite-line',
+    image: 'image/inertia.jpeg',
     category: 'Small Satellite Systems',
     
     contentSections: [
@@ -67,7 +69,7 @@ const productData = {
         title: 'Advanced Satellite Technology',
         content: 'Our Inertia satellite represents cutting-edge mid-range satellite technology, incorporating advanced communication systems and scientific instrumentation. With robust engineering and comprehensive testing protocols, this platform delivers exceptional performance for extended space missions.',
         type: 'content-image',
-        image: 'assets/img/bock_ai_img1.jpg'
+        image: 'image/inertia.jpeg',
       },
       {
         title: 'Extended Mission Operations',
@@ -114,6 +116,7 @@ const productData = {
     subtitle: 'Large-Scale Space Platform',
     description: 'Heavy-duty satellite platform with advanced propulsion systems and deep space exploration capabilities for ambitious interplanetary missions.',
     icon: 'ri-space-ship-line',
+    image: 'image/inertia mega.jpeg',
     category: 'Large Satellite Systems',
     
     contentSections: [
@@ -121,7 +124,7 @@ const productData = {
         title: 'Deep Space Technology',
         content: 'Our Inertia Mega represents the pinnacle of large-scale satellite engineering, incorporating advanced propulsion systems and deep space exploration capabilities. With cutting-edge technology and extensive testing, this platform enables ambitious interplanetary missions.',
         type: 'content-image',
-        image: 'assets/img/bock_automotive_img1.jpg'
+        image: 'image/inertia mega.jpeg',
       },
       {
         title: 'Interplanetary Mission Capabilities',
@@ -168,6 +171,7 @@ const productData = {
     subtitle: 'High-Performance Propulsion',
     description: 'Advanced propulsion system designed for efficient orbital transfers, station-keeping, and interplanetary missions with innovative fuel management technology.',
     icon: 'ri-rocket-line',
+    image: 'image/momentun.jpeg',
     category: 'Propulsion Systems',
     
     contentSections: [
@@ -175,7 +179,7 @@ const productData = {
         title: 'Advanced Propulsion Technology',
         content: 'Our Momentum propulsion system represents revolutionary advancement in space propulsion technology, featuring high-efficiency engines and innovative fuel management. With precision engineering and extensive testing, this system delivers exceptional performance for complex space missions.',
         type: 'content-image',
-        image: 'assets/img/bock_chain_img1.jpg'
+        image: 'image/momentun.jpeg',
       },
       {
         title: 'Propulsion System Operations',
@@ -216,4 +220,108 @@ const productData = {
 
   },
 
+  'frr': {
+    name: 'FRR',
+    subtitle: 'High-Performance Propulsion',
+    description: 'Advanced propulsion system designed for efficient orbital transfers, station-keeping, and interplanetary missions with innovative fuel management technology.',
+    icon: 'ri-rocket-line',
+    image: 'image/frr.jpeg',
+    category: 'Propulsion Systems',
+    
+    contentSections: [
+      {
+        title: 'Advanced Propulsion Technology',
+        content: 'Our FRR propulsion system represents revolutionary advancement in space propulsion technology, featuring high-efficiency engines and innovative fuel management. With precision engineering and extensive testing, this system delivers exceptional performance for complex space missions.',
+        type: 'content-image',
+        image: 'image/frr.jpeg',
+      },
+      {
+        title: 'Propulsion System Operations',
+        content: 'Discover how FRR enables efficient orbital transfers and station-keeping through advanced propulsion technology. This comprehensive system provides variable thrust capabilities and fuel optimization for extended mission durations.',
+        type: 'content-video',
+        video: 'https://www.youtube.com/embed/wbSwFU6tY1c'
+      },
+      {
+        title: 'Engine Testing & Validation',
+        content: 'Watch comprehensive propulsion testing procedures and engine validation for FRR. This detailed video demonstrates our rigorous engine testing protocols, thrust characterization, and performance validation for mission-critical applications.',
+        type: 'content-video',
+        video: 'https://www.youtube.com/embed/VBlIvghQTlI'
+      },
+      {
+        title: 'Propulsion Technical Manual',
+        content: 'Comprehensive technical specifications for FRR propulsion system. Access detailed documentation covering engine performance characteristics, fuel systems, thrust vector control, and integration procedures for spacecraft applications.',
+        type: 'content-document',
+        document: 'assets/documents/frr-propulsion-manual.pdf'
+      },
+      {
+        title: 'Mission Integration Guide',
+        content: 'Complete integration documentation for FRR propulsion system including spacecraft integration procedures, fuel loading protocols, mission planning considerations, and operational procedures for various mission profiles.',
+        type: 'content-document',
+        document: 'assets/documents/frr-integration-guide.pdf'
+      },
+      {
+        title: 'Propulsion Safety Protocols',
+        content: 'Comprehensive safety protocols for FRR propulsion operations. Includes fuel handling procedures, engine safety systems, emergency shutdown protocols, and hazardous operations procedures for propulsion system operations.',
+        type: 'content-document',
+        document: 'assets/documents/frr-safety-protocols.pdf'
+      },
+      {
+        title: 'Propulsion Innovation Leadership',
+        content: 'FRR is revolutionizing space propulsion through advanced engine technology and fuel efficiency innovations. Our propulsion system enables cost-effective space missions, reducing fuel consumption while maximizing mission capability and operational flexibility.',
+        type: 'content-only'
+      }
+    ],
+  },
+
+  'frrengine': {
+    name: 'FRR Engine',
+    subtitle: 'High-Performance Propulsion',
+    description: 'Advanced propulsion system designed for efficient orbital transfers, station-keeping, and interplanetary missions with innovative fuel management technology.',
+    icon: 'ri-rocket-line',
+    image: 'image/frr_engine.jpeg',
+    category: 'Propulsion Systems',
+    contentSections: [
+      {
+        title: 'Advanced Propulsion Technology',
+        content: 'Our FRR propulsion system represents revolutionary advancement in space propulsion technology, featuring high-efficiency engines and innovative fuel management. With precision engineering and extensive testing, this system delivers exceptional performance for complex space missions.',
+        type: 'content-image',
+        image: 'image/frr_engine.jpeg'
+      },
+      {
+        title: 'Propulsion System Operations',
+        content: 'Discover how FRR enables efficient orbital transfers and station-keeping through advanced propulsion technology. This comprehensive system provides variable thrust capabilities and fuel optimization for extended mission durations.',
+        type: 'content-video',
+        video: 'https://www.youtube.com/embed/wbSwFU6tY1c'
+      },
+      {
+        title: 'Engine Testing & Validation',
+        content: 'Watch comprehensive propulsion testing procedures and engine validation for FRR. This detailed video demonstrates our rigorous engine testing protocols, thrust characterization, and performance validation for mission-critical applications.',
+        type: 'content-video',
+        video: 'https://www.youtube.com/embed/VBlIvghQTlI'
+      },
+      {
+        title: 'Propulsion Technical Manual',
+        content: 'Comprehensive technical specifications for FRR propulsion system. Access detailed documentation covering engine performance characteristics, fuel systems, thrust vector control, and integration procedures for spacecraft applications.',
+        type: 'content-document',
+        document: 'assets/documents/frr-propulsion-manual.pdf'
+      },
+      {
+        title: 'Mission Integration Guide',
+        content: 'Complete integration documentation for FRR propulsion system including spacecraft integration procedures, fuel loading protocols, mission planning considerations, and operational procedures for various mission profiles.',
+        type: 'content-document',
+        document: 'assets/documents/frr-integration-guide.pdf'
+      },
+      {
+        title: 'Propulsion Safety Protocols',
+        content: 'Comprehensive safety protocols for FRR propulsion operations. Includes fuel handling procedures, engine safety systems, emergency shutdown protocols, and hazardous operations procedures for propulsion system operations.',
+        type: 'content-document',
+        document: 'assets/documents/frr-safety-protocols.pdf'
+      },
+      {
+        title: 'Propulsion Innovation Leadership',
+        content: 'FRR is revolutionizing space propulsion through advanced engine technology and fuel efficiency innovations. Our propulsion system enables cost-effective space missions, reducing fuel consumption while maximizing mission capability and operational flexibility.',
+        type: 'content-only'
+      }
+    ],
+  },
 };
